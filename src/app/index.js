@@ -3,6 +3,7 @@ const path = require("path")
 const Koa = require("koa")
 const koaBody = require('koa-body');
 const KoaStatic = require("koa-static")
+const parameter = require('koa-parameter');
 
 const errHandler = require("./errHandler")
 
@@ -18,6 +19,7 @@ app.use(koaBody({
     }
 })); //要在处理路由之前注册koabody中间件
 app.use(KoaStatic(path.join(__dirname, "../upload")))
+app.use(parameter(app))
 // app.use(userRouter.routes())
 app.use(router.routes()).use(router.allowedMethods())
 // 统一错误处理
