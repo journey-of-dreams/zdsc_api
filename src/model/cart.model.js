@@ -2,6 +2,7 @@ const {
     DataTypes
 } = require("sequelize")
 const seq = require("../db/seq")
+const Goods = require("./goods.model")
 
 const Cart = seq.define("zd_cart", {
     user_id: {
@@ -26,6 +27,11 @@ const Cart = seq.define("zd_cart", {
         defaultValue: true,
         comment: "选中状态"
     },
+})
+
+Cart.belongsTo(Goods, {
+    foreignKey: "goods_id",
+    as: "goods_info"
 })
 // Cart.sync({
 //     force: true

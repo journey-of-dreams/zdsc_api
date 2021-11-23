@@ -1,16 +1,16 @@
 const {
-    goodsFormatError
+    ruleFormatError
 } = require("../constant/err.type")
-const validator = async (ctx, next) => {
-    try {
-        ctx.verifyParams({
-            goods_id: "number"
-        })
-    } catch (error) {
-        goodsFormatError.result = error
-        return ctx.app.emit("error", goodsFormatError, ctx)
+const validator = (rules) => {
+    return async (ctx, next) => {
+        try {
+            ctx.verifyParams(rules)
+        } catch (error) {
+            ruleFormatError.result = error
+            return ctx.app.emit("error", ruleFormatError, ctx)
+        }
+        await next()
     }
-    await next()
 }
 module.exports = {
     validator

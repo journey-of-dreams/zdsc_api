@@ -15,9 +15,7 @@ const {
     restoreGoodsError,
     uniqueConstraintError
 } = require("../constant/err.type")
-const {
-    findAll
-} = require("../model/goods.model")
+
 class GoodsController {
     // 上传
     async upload(ctx, next) {

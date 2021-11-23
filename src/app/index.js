@@ -15,8 +15,9 @@ app.use(koaBody({
     formidable: {
         // 在配置选项option里，不推荐使用相对路径(在option里的相对路径，不是相对的当前的文件，而是相对于脚本文件）
         uploadDir: path.join(__dirname, "../upload"),
-        keepExtensions: true
-    }
+        keepExtensions: true,
+    },
+    parsedMethods: ["POST", "PUT", "PATCH", "DELETE"]
 })); //要在处理路由之前注册koabody中间件
 app.use(KoaStatic(path.join(__dirname, "../upload")))
 app.use(parameter(app))

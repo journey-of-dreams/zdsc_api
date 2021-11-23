@@ -79,4 +79,14 @@ module.exports = {
         message: "恢复商品失败",
         result: ""
     },
+    ruleFormatError: {
+        code: "10301",
+        message: "校验规则格式错误",
+        result: ""
+    },
+    notExitGoodsError: {
+        code: "10302",
+        message: "该商品不存在",
+        result: ""
+    },
 }
