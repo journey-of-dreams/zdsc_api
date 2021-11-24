@@ -4,11 +4,10 @@ const {
     updateCarts,
     removeCarts,
     selectAllCarts,unselectAllCarts
-} = require("../service/cart.server")
+} = require("../service/cart.service")
 const {
     notExitGoodsError
 } = require("../constant/err.type")
-const Cart = require("../model/cart.model")
 // post请求用ctx.request.body获取参数，get请用用ctx.request.query获取参数
 class CartController {
     // 加入购物车
