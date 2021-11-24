@@ -4,14 +4,16 @@ const jwt = require("jsonwebtoken")
 const {
     getUserInfo,
     createUser,
-    updateById
+    updateById,
+    setAuthUser
 } = require("../service/user.service")
 const {
     JWT_SECRET
 } = require("../config/config.default")
 
 const {
-    userRegisterError
+    userRegisterError,
+    editAuthError
 } = require("../constant/err.type")
 class UserController {
     // 注册
@@ -86,6 +88,25 @@ class UserController {
             }
         }
         // console.log(res);
+    }
+    // 设置权限
+    async setAuth(ctx) {
+        const user_id = ctx.state.user.id
+        console.log(user_id);
+        const {
+            is_admin,
+            id
+        } = ctx.request.body
+        if (user_id == 1) {
+            const res = await setAuthUser(id, is_admin)
+            ctx.body = {
+                code: 0,
+                message: "修改权限成功",
+                result: res
+            }
+        } else {
+            ctx.app.emit("error", editAuthError, ctx)
+        }
     }
 }
 module.exports = new UserController()

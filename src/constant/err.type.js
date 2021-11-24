@@ -29,6 +29,11 @@ module.exports = {
         message: "密码错误",
         result: ""
     },
+    editAuthError: {
+        code: "10007",
+        message: "无权限",
+        result: ""
+    },
     tokenExpiredError: {
         code: "10101",
         message: "token已过期",
@@ -87,6 +92,11 @@ module.exports = {
     notExitGoodsError: {
         code: "10302",
         message: "该商品不存在",
+        result: ""
+    },
+    cancelOrderError: {
+        code: "10401",
+        message: "无权限取消订单",
         result: ""
     },
 }

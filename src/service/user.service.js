@@ -62,5 +62,15 @@ class UserService {
         });
         return res[0] > 0 ? true : false
     }
+    // 修改权限
+    async setAuthUser(id, is_admin) {
+        return await User.update({
+            is_admin: is_admin
+        }, {
+            where: {
+                id
+            }
+        })
+    }
 }
 module.exports = new UserService()

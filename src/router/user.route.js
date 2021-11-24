@@ -3,8 +3,12 @@ const Router = require("koa-router")
 const {
     register,
     login,
-    editPassword
+    editPassword,
+    setAuth
 } = require("../controller/user.controller")
+const {
+    validator
+} = require("../middleware/cart.midleware")
 const {
     userValidator,
     verifyUser,
@@ -25,4 +29,9 @@ userRouter.post("/register", userValidator, verifyUser, cryptPassword, register)
 userRouter.post("/login", userValidator, verifyLogin, login)
 // 修改密码
 userRouter.patch("/", auth, cryptPassword, editPassword)
+// 设置权限（admin为超级管理员，可为其他用户设置权限）
+userRouter.patch("/auth", auth, validator({
+    id: "number",
+    is_admin: "boolean"
+}), setAuth)
 module.exports = userRouter
