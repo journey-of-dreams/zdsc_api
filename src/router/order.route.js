@@ -1,7 +1,6 @@
 const Router = require("koa-router")
 const {
-    auth,
-    hasAdminPermission
+    auth
 } = require("../middleware/auth.middleware")
 
 const {
@@ -24,9 +23,8 @@ router.post("/", auth, validator({
 }), create)
 // 获取订单列表
 router.get("/", auth, findAll)
-// 修改订单
+// 修改订单（非会员不可取消订单）
 router.patch("/:id", auth, validator({
     status: "number"
 }), update)
-// 取消订单（会员权限）
 module.exports = router
